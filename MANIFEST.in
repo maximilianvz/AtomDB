@@ -2,3 +2,4 @@ include LICENSE
 include README.rst
 
 include atomdb/datasets/*/db/*
+include atomdb/datasets/numeric/*
