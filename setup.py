@@ -16,7 +16,7 @@
 r"""AtomDB setup script. Run `python setup.py --help` for help."""
 
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 if __name__ == '__main__':
@@ -27,8 +27,8 @@ if __name__ == '__main__':
         name='atomdb',
         description='AtomDB',
         long_description=README,
-        packages=['atomdb'],
-        package_dir={'atomdb': 'atomdb'},
+        packages=find_packages(),
+        #package_dir={'atomdb': 'atomdb'},
         include_package_data=True,
         install_requires=["numpy", "scipy", "msgpack", "h5py"]
     )
