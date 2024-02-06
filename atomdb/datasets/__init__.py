@@ -17,3 +17,4 @@ from .hci_augccpwcvqz import *
 from .nist import *
 from .numeric import *
 from .slater import *
+from atomdb.datasets.numeric import *
