@@ -25,6 +25,7 @@
 import numpy as np
 from numpy.testing import assert_equal, assert_almost_equal
 from atomdb.api import load
+import atomdb.datasets
 
 
 TEST_DATAPATH = "atomdb/test/data/"
