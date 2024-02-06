@@ -12,8 +12,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with AtomDB. If not, see <http://www.gnu.org/licenses/>.
-from gaussian import *
-from hci_augccpwcvqz import *
-from nist import *
-from numeric import *
-from slater import *
+from .gaussian import *
+from .hci_augccpwcvqz import *
+from .nist import *
+from .numeric import *
+from .slater import *
