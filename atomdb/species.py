@@ -587,7 +587,11 @@ def load(
 
         for file in fn:
             with open(file, "rb") as f:
-                obj.append(Species(dataset, unpackb(f.read(), object_hook=decode)))
+                fields = unpackb(f.read(), object_hook=decode)
+                for key in list(fields):
+                    if key in ["dataset", "dispersion_c6"]:
+                        del fields[key]
+                obj.append(Species(dataset, fields))
     else:
         with open(fn, "rb") as f:
             obj = Species(dataset, unpackb(f.read(), object_hook=decode))
@@ -628,7 +632,7 @@ def datafile(
     elem = "[^_]" if elem is Ellipsis else element_symbol(elem)
     charge = "[^_]" if charge is Ellipsis else f"{charge:03d}"
     mult = "[^_]" if mult is Ellipsis else f"{mult:03d}"
-    nexc = "[^_]" if nexc is Ellipsis else f"{nexc:03d}"
+    nexc = "[^_]" if nexc is Ellipsis else (f"{nexc:03d}" if dataset != "uhf_augccpvdz" else nexc)
 
     # Wildcard search for multiple species, use repodata.txt for matching
     if "[^_]" in (elem, charge, mult, nexc):
@@ -638,7 +642,7 @@ def datafile(
                 url=f"{remotepath}{dataset.lower()}/db/repodata.txt",
                 known_hash=None,
                 path=path.join(datapath, dataset.lower(), "db"),
-                fname=f"repo_data.txt",
+                fname=f"repodata.txt",
             )
         # if the file is not found or remote was not valid, use the local repodata file
         except (requests.exceptions.HTTPError, ValueError):
