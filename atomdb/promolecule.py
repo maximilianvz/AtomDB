@@ -208,7 +208,9 @@ class Promolecule:
 
         def f(atom):
             # FIXME: If mass of most abundant species is wanted change for 'nist'
-            return atom.atmass["stb"]
+            if type(atom.atmass) == dict:
+                return atom.atmass["stb"]
+            return atom.atmass
 
         return _extensive_global_property(self.atoms, self.coeffs, f)
 
